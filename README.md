@@ -1,6 +1,8 @@
 # cmp-go-pkgs
 
-[nvim-cmp](https://github.com/hrsh7th/nvim-cmp) source providing the names of **Go** packages to import.
+[nvim-cmp](https://github.com/hrsh7th/nvim-cmp) source providing the names of **Go** packages to import
+
+https://github.com/user-attachments/assets/10058da8-d2b0-477e-bf15-ae14dbe6e11b
 
 ## ✨ Features
 
@@ -38,14 +40,11 @@ Install the plugin with your preferred package manager:
 - LSP with the [gopls](https://pkg.go.dev/golang.org/x/tools/gopls) Language Server
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/) with the `go` parser installed
 
-## ⚙️ Configuration
+## ⚙️ Setup
 
-### Setup
+**⚠️ Attention! The plugin won't work without it ⚠️**
 
-**⚠️ Attention**
-
-You need to add the following code next to other autocmds in your config:
-
+You need to add the following code next to other autocmds in your neovim config. 
 
 ```lua
 vim.api.nvim_create_autocmd({ "LspAttach" }, {
@@ -56,7 +55,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 })
 ```
 
-**The plugin won't work without it❗**
+This code defines the following behavior: at each `LspAttach` event, the plugin will request a list of packages available for import from `gopls` and save them to its cache. This is more efficient than sending requests to the LSP for each completion request. However, because of this, if you change or add new packages, they will be displayed in the previously opened buffer only if you reopen it or call `:LspRestart`.
 
 ## 🚀 Usage
 
