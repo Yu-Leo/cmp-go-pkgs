@@ -26,7 +26,6 @@ source.init_items = function(args)
 		arguments = arguments,
 	}, function(error, result, _)
 		if error ~= nil then
-			vim.print("LSP error", error)
 			return
 		end
 
