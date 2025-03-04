@@ -39,10 +39,17 @@ end
 ---@return boolean
 M.check_if_inside_imports = function()
 	local cur_node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
+	local is_in_string = false
 
 	while cur_node do
-		if cur_node:type() == "import_declaration" then
-			return true
+		local node_type = cur_node:type()
+
+		if node_type == "interpreted_string_literal" then
+			is_in_string = true
+		end
+
+		if node_type == "import_declaration" then
+			return is_in_string
 		end
 
 		cur_node = cur_node:parent()
